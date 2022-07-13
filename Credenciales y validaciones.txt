@@ -1,0 +1,39 @@
+Version Django: 3.0.14
+Credenciales: User: admin, contrasena: admin
+Validaciones aplicadas: 
+-----------------------------------------------
+-----------------------------------------------
+formulario login.
+- valida las credeciales usuario y contrasena.
+-----------------------------------------------
+-----------------------------------------------
+formulario ingreso empresa
+- valida campo (Nombre de empresa) solo letras.
+- valida campo (Rut) solo numero de 0-9 y '-'.
+- todos los campos se deben ingresar en el formulario validacion propia de django.
+- valida los rut ingresados para que no se vuelvan a ingresar el mismo rut.
+-----------------------------------------------
+-----------------------------------------------
+Tabla Empresa 
+- alertas de elminacion.
+- alerta de editado.
+-----------------------------------------------
+-----------------------------------------------
+formulario ingreso contacto
+- valida campo (Nombre de contacto)solo letras.
+- valida campo (Apellidos)solo letras.
+- valida campo (Telefono) solo numero de 0-9.
+- todos los campos se deben ingresar en el formulario validacion propia de django.
+- valida los telefonos ingresados para que no se vuelvan a ingresar el mismo numero.
+-----------------------------------------------
+-----------------------------------------------
+Tabla Contacto
+- alertas de elminacion.
+- alerta de editado.
+-----------------------------------------------
+-----------------------------------------------
+Formulario Agendar
+- valida las selecciones de asociación de empresas.
+
+-----------------------------------------------
+-----------------------------------------------

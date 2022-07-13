@@ -1,0 +1,78 @@
+{% extends 'Home/Dashboard.html'%}
+{% load static %}
+{% block content %}
+<body>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div data-valor="1" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'Empresa:Dashboard'%}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Información empresas</li>
+          </ol>
+        </nav>
+        
+        
+      </div>
+      <h1 class="h2 ">Empresas</h1>
+      <br>
+      {% for a in empresas %}
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{a.IdEmpresa}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                    {{a.Nombre_empresa}}
+                  </button>
+                </h2>
+                <div id="flush-{{a.IdEmpresa}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                  <br>
+                  <h5>Contactos:</h5>
+                  {% for u in agenda %}
+                    {% if u.Empresa_agenda == a.IdEmpresa%}
+                      {% for c in contacto%}
+                        {% if u.Contacto_agenda == c.IdContacto%}
+                        
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">Información:</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Nombre: {{c.Nombre_contacto}} {{c.Apellidos}}</h6>
+                            <p class="card-text">Teléfono: {{c.Telefono}}</p>
+                            <p class="card-text">Email: {{c.Email}}</p>
+                            <p class="card-text">Dirección: {{c.Direccion}}</p>
+                            <p class="card-text">Comuna: {{c.Comuna}}</p>
+                            
+                          </div>
+                        </div>
+                        
+                        {% elif u.Contacto_agenda is None  %}
+                          <li>No existen contactos relacionados</li>
+                        {%else%}
+                        {% endif %}
+                        
+                      {% endfor %}
+                   
+                    {% endif%}
+                  {% endfor %}
+                </div>
+              </div>
+         </div>
+         
+        
+      <hr style="color:grey;">
+      {% endfor %}
+          
+      
+     
+      
+      <br>
+      
+      <hr style="color:grey;">
+      <footer class="bg-light text-center text-lg-start">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright:
+          <a class="text-dark">EjercicioCVZ ECOS</a>
+        </div>
+      </footer>
+    </main>
+    
+  </body>
+{%endblock%}

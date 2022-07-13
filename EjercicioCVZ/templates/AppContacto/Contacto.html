@@ -1,0 +1,83 @@
+{% extends 'Home/Dashboard.html'%}
+{% load static %}
+{% block content %}
+
+<body>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div data-valor="1" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'Empresa:Dashboard'%}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contactos</li>
+          </ol>
+        </nav>
+        
+        
+      </div>
+      <h1 class="h2 ">Contactos</h1>
+      <div class="container">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Ingrese un contacto</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form method="post">
+                  {% csrf_token %}
+                  {{ form }}
+                  <button class="w-100 btn btn-lg btn-success mt-4" type="submit">Guardar</button>
+                    
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr style="color:grey;">
+      <br>
+      <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Dirección</th>
+                <th>Comuna</th>
+                <th class="text-center"><i class="fas fa-trash"></i></th>
+                <th class="text-center"><i class="fas fa-edit"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in contacto %}
+            <tr>
+                <td hidden>{{c.IdContacto}}</td>
+                <td>{{c.Nombre_contacto}}</td>
+                <td>{{c.Apellidos}}</td>
+                <td>{{c.Telefono}}</td>
+                <td>{{c.Email}}</td>
+                <td>{{c.Direccion}}</td>
+                <td>{{c.Comuna}}</td>
+                <td hidden>{{c.Comuna.IdComuna}}</td>
+                <td class="text-center"><a onclick="EliminarContacto({{c.IdContacto}})"><button class="btn btn-danger">Eliminar</button></a></td>
+                <td class="text-center"><a><button class="btn btn-primary ActualizarContacto" >Actualizar</button></a></td>
+            </tr>
+            {% endfor %}
+
+      </table>
+      <hr style="color:grey;">
+      <footer class="bg-light text-center text-lg-start">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright:
+          <a class="text-dark">EjercicioCVZ ECOS</a>
+        </div>
+      </footer>
+    </main>
+    
+  </body>
+
+
+{% endblock%}
